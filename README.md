@@ -1,8 +1,8 @@
-# **Vehicle Detection for Autonomous Driving** 
+# **AI Car Detection for Autonomous Driving** 
 
 ## Objective
 
-#### A demo of Vehicle Detection System: a monocular camera is used for detecting vehicles. 
+#### A demo of AI Car Detection System: a monocular camera is used for detecting vehicles. 
 
 
 #### [**(1) Highway Drive (with Lane Departure Warning)**](https://youtu.be/Brh9-uab7Qs) (Click to see the full video)

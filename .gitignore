@@ -163,4 +163,5 @@ cython_debug/
 
 # Big model files
 model/yolov3.h5
+model/model.h5
 model/yolov3.weights

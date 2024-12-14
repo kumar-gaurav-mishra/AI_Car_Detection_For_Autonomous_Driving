@@ -1,5 +1,6 @@
 import struct
 import numpy as np
+import tensorflow as tf
 from tensorflow.keras.layers import Conv2D
 from tensorflow.keras.layers import Input
 from tensorflow.keras.layers import BatchNormalization
@@ -8,8 +9,104 @@ from tensorflow.keras.layers import ZeroPadding2D
 from tensorflow.keras.layers import UpSampling2D
 from tensorflow.keras.layers import add, concatenate
 from tensorflow.keras.models import Model
+from tensorflow.keras.preprocessing.image import load_img
 from matplotlib import pyplot
 from matplotlib.patches import Rectangle
+
+labels = [
+    "person",
+    "bicycle",
+    "car",
+    "motorbike",
+    "aeroplane",
+    "bus",
+    "train",
+    "truck",
+    "boat",
+    "traffic light",
+    "fire hydrant",
+    "stop sign",
+    "parking meter",
+    "bench",
+    "bird",
+    "cat",
+    "dog",
+    "horse",
+    "sheep",
+    "cow",
+    "elephant",
+    "bear",
+    "zebra",
+    "giraffe",
+    "backpack",
+    "umbrella",
+    "handbag",
+    "tie",
+    "suitcase",
+    "frisbee",
+    "skis",
+    "snowboard",
+    "sports ball",
+    "kite",
+    "baseball bat",
+    "baseball glove",
+    "skateboard",
+    "surfboard",
+    "tennis racket",
+    "bottle",
+    "wine glass",
+    "cup",
+    "fork",
+    "knife",
+    "spoon",
+    "bowl",
+    "banana",
+    "apple",
+    "sandwich",
+    "orange",
+    "broccoli",
+    "carrot",
+    "hot dog",
+    "pizza",
+    "donut",
+    "cake",
+    "chair",
+    "sofa",
+    "pottedplant",
+    "bed",
+    "diningtable",
+    "toilet",
+    "tvmonitor",
+    "laptop",
+    "mouse",
+    "remote",
+    "keyboard",
+    "cell phone",
+    "microwave",
+    "oven",
+    "toaster",
+    "sink",
+    "refrigerator",
+    "book",
+    "clock",
+    "vase",
+    "scissors",
+    "teddy bear",
+    "hair drier",
+    "toothbrush",
+]
+
+IMAGE_WIDTH = 416
+IMAGE_HEIGHT = 416
+
+
+def load_and_preprocess_image(path, shape):
+    image = tf.io.read_file(path)
+    width, height = load_img(path).size
+    image = tf.image.decode_jpeg(image, channels=3)
+    image = tf.image.resize(image, shape)
+    image /= 255
+    return image, width, height
 
 
 def encoder_dic(valid_data):

@@ -3,8 +3,8 @@ import tensorflow as tf
 from tensorflow.keras.preprocessing.image import load_img
 from numpy import expand_dims
 from src.process import *
-from src.utili import draw_boxes
-from src.utili import encoder_dic
+from src.utils import draw_boxes
+from src.utils import encoder_dic
 from src.nmsupress import do_nms
 
 class Detector():
